@@ -4,7 +4,7 @@ import Player from "./entities/Player.js";
 
 const canvas = new Canvas("gameCanvas", 800, 500);
 
-const player = new Player(0, 450, 50, 50, "blue", 3, 2);
+const player = new Player(0, 225, 50, 50, "blue", 3, 2);
 
 const gameLoop = () => {
   // Limpa o canvas
