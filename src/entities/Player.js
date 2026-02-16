@@ -13,8 +13,6 @@ class Player extends Entity {
     this.speed = speed;
   }
   walk(direction) {
-    console.log("a");
-
     switch (direction) {
       case "up":
         this.y -= this.speed;
