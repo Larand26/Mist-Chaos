@@ -1,5 +1,7 @@
 import Canvas from "./core/Canvas.js";
 
+import Player from "./entities/Player.js";
+
 const canvas = new Canvas("gameCanvas", 800, 500);
 
 const gameLoop = () => {
