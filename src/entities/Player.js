@@ -8,8 +8,9 @@ class Player extends Entity {
     color = "white",
     life = 3,
     speed = 5,
+    colision = true,
   ) {
-    super(x, y, width, height, color, life);
+    super(x, y, width, height, color, life, colision);
     this.speed = speed;
   }
   walk(direction) {
@@ -47,6 +48,13 @@ class Player extends Entity {
     if (keyboard.isKeyPressed("KeyD")) {
       this.walk("right");
     }
+  }
+  takeDamage(amount) {
+    this.life -= amount;
+    this.colision = false;
+    setTimeout(() => {
+      this.colision = true;
+    }, 1000);
   }
 }
 export default Player;

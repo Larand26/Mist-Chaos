@@ -6,6 +6,7 @@ class Entity {
     height = 100,
     color = "white",
     life = 3,
+    colision = true,
   ) {
     this.x = x;
     this.y = y;
@@ -13,6 +14,7 @@ class Entity {
     this.height = height;
     this.color = color;
     this.life = life;
+    this.colision = colision;
   }
 }
 export default Entity;
