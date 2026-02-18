@@ -34,5 +34,19 @@ class Player extends Entity {
         break;
     }
   }
+  update(keyboard) {
+    if (keyboard.isKeyPressed("KeyW")) {
+      this.walk("up");
+    }
+    if (keyboard.isKeyPressed("KeyS")) {
+      this.walk("down");
+    }
+    if (keyboard.isKeyPressed("KeyA")) {
+      this.walk("left");
+    }
+    if (keyboard.isKeyPressed("KeyD")) {
+      this.walk("right");
+    }
+  }
 }
 export default Player;
