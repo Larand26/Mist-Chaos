@@ -13,6 +13,10 @@ class Player extends Entity {
     this.speed = speed;
   }
   walk(direction) {
+    if (this.x < 0) this.x = 0;
+    if (this.x + this.width > 800) this.x = 800 - this.width;
+    if (this.y < 0) this.y = 0;
+    if (this.y + this.height > 500) this.y = 500 - this.height;
     switch (direction) {
       case "up":
         this.y -= this.speed;
