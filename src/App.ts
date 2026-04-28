@@ -1,5 +1,6 @@
 import express from "express";
 import routes from "./routes/index.js";
+import path from "node:path";
 
 class App {
   server: express.Express;
@@ -11,7 +12,7 @@ class App {
   }
 
   middleware() {
-    this.server.use(express.static("public"));
+    this.server.use(express.static(path.resolve(process.cwd(), "public")));
   }
 
   routes() {
