@@ -13,6 +13,7 @@ class App {
 
   middleware() {
     this.server.use(express.static(path.resolve(process.cwd(), "public")));
+    this.server.use(express.static(path.resolve(process.cwd(), "dist")));
   }
 
   routes() {
