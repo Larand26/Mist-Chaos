@@ -4,7 +4,7 @@ import type { Request, Response } from "express";
 const routes = Router();
 
 routes.get("/", (req: Request, res: Response) => {
-  res.send("Hello, World!");
+  res.sendFile("index.html");
 });
 
 export default routes;
