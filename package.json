@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "tsc && node dist/server.js",
-    "dev": "npx tsx watch src/server.ts"
+    "dev": "concurrently \"npx tsx watch src/server.ts\" \"tsc --watch\""
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/node": "^25.6.0",
+    "concurrently": "^8.2.2",
     "tsx": "^4.21.0",
     "typescript": "^6.0.3"
   }
