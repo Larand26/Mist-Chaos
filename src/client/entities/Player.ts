@@ -3,6 +3,8 @@ import Entity from "./Entity.js";
 import {
   PLAYER_SPEED,
   PLAYER_JUMP_STRENGTH,
+  PLAYER_SPECIAL,
+  PLAYER_HEALTH,
 } from "../constants/playerConfig.js";
 
 class Player extends Entity {
@@ -10,6 +12,8 @@ class Player extends Entity {
   speed: number = PLAYER_SPEED;
   jumping: boolean = false;
   jumpStrength: number = PLAYER_JUMP_STRENGTH;
+  special: number = PLAYER_SPECIAL;
+  health: number = PLAYER_HEALTH;
 
   constructor(
     x: number,
@@ -21,12 +25,16 @@ class Player extends Entity {
     speed: number = PLAYER_SPEED,
     jumping: boolean = false,
     jumpStrength: number = PLAYER_JUMP_STRENGTH,
+    special: number = PLAYER_SPECIAL,
+    health: number = PLAYER_HEALTH,
   ) {
     super(x, y, height, width, true, color, true);
     this.name = name;
     this.speed = speed;
     this.jumping = jumping;
     this.jumpStrength = jumpStrength;
+    this.special = special;
+    this.health = health;
   }
 
   draw(ctx: CanvasRenderingContext2D): void {
@@ -40,6 +48,8 @@ class Player extends Entity {
       speed: this.speed,
       jumping: this.jumping,
       jumpStrength: this.jumpStrength,
+      special: this.special,
+      health: this.health,
     };
   }
 }
