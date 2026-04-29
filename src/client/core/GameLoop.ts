@@ -7,6 +7,7 @@ import {
   D_KEY,
   SPACE_KEY,
   W_KEY,
+  S_KEY,
 } from "../constants/keyboardConfig.js";
 
 import Player from "../entities/Player.js";
@@ -56,26 +57,18 @@ class Game {
   private update(deltaTime: number) {
     // Movimento horizontal
     if (this.isKeyPressed(A_KEY)) {
-      this.player.move(-this.player.speed);
+      this.player.walk("left");
     }
-
     if (this.isKeyPressed(D_KEY)) {
-      this.player.move(this.player.speed);
+      this.player.walk("right");
     }
 
     // Pulo
-    if (this.isKeyPressed(SPACE_KEY) && this.player.isGrounded(GROUND_LEVEL)) {
-      this.player.jump();
+    if (this.isKeyPressed(SPACE_KEY)) {
+      this.player.jump(GROUND_LEVEL);
     }
 
-    // Aplicar gravidade
-    this.player.applyGravity(GRAVITY);
-
-    // Detectar colisão com o chão
-    if (this.player.isGrounded(GROUND_LEVEL)) {
-      this.player.land(GROUND_LEVEL);
-    }
-
+    this.player.applyGravity(GRAVITY, GROUND_LEVEL);
     this.resolveWorldBounds();
   }
 

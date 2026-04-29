@@ -17,6 +17,7 @@ class Player extends Entity {
   health: number = PLAYER_HEALTH;
   speedY: number = PLAYER_SPEED_Y;
   velocityY: number = 0;
+  crouched: boolean = false;
 
   constructor(
     x: number,
@@ -60,20 +61,30 @@ class Player extends Entity {
     };
   }
 
-  move(deltaX: number) {
-    this.x += deltaX;
-  }
-
-  jump() {
-    if (!this.jumping) {
-      this.jumping = true;
-      this.velocityY = this.jumpStrength;
+  walk(direction: "left" | "right") {
+    if (direction === "left") {
+      this.x -= this.speed;
+    } else {
+      this.x += this.speed;
     }
   }
 
-  applyGravity(gravity: number) {
+  jump(groundLevel: number) {
+    if (this.jumping || !this.isGrounded(groundLevel)) return;
+
+    this.jumping = true;
+    this.velocityY = this.jumpStrength;
+  }
+
+  applyGravity(gravity: number, groundLevel: number) {
+    if (!this.jumping) return;
+
     this.velocityY -= gravity;
     this.y += this.velocityY;
+
+    if (this.y <= groundLevel) {
+      this.land(groundLevel);
+    }
   }
 
   isGrounded(groundLevel: number): boolean {
