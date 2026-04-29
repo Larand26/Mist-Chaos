@@ -5,6 +5,7 @@ import {
   PLAYER_JUMP_STRENGTH,
   PLAYER_SPECIAL,
   PLAYER_HEALTH,
+  PLAYER_SPEED_Y,
 } from "../constants/playerConfig.js";
 
 class Player extends Entity {
@@ -14,6 +15,8 @@ class Player extends Entity {
   jumpStrength: number = PLAYER_JUMP_STRENGTH;
   special: number = PLAYER_SPECIAL;
   health: number = PLAYER_HEALTH;
+  speedY: number = PLAYER_SPEED_Y;
+  velocityY: number = 0;
 
   constructor(
     x: number,
@@ -27,6 +30,7 @@ class Player extends Entity {
     jumpStrength: number = PLAYER_JUMP_STRENGTH,
     special: number = PLAYER_SPECIAL,
     health: number = PLAYER_HEALTH,
+    speedY: number = PLAYER_SPEED_Y,
   ) {
     super(x, y, height, width, true, color, true);
     this.name = name;
@@ -35,6 +39,8 @@ class Player extends Entity {
     this.jumpStrength = jumpStrength;
     this.special = special;
     this.health = health;
+    this.speedY = speedY;
+    this.velocityY = 0;
   }
 
   draw(ctx: CanvasRenderingContext2D): void {
@@ -50,11 +56,34 @@ class Player extends Entity {
       jumpStrength: this.jumpStrength,
       special: this.special,
       health: this.health,
+      speedY: this.speedY,
     };
   }
 
   move(deltaX: number) {
     this.x += deltaX;
+  }
+
+  jump() {
+    if (!this.jumping) {
+      this.jumping = true;
+      this.velocityY = this.jumpStrength;
+    }
+  }
+
+  applyGravity(gravity: number) {
+    this.velocityY -= gravity;
+    this.y += this.velocityY;
+  }
+
+  isGrounded(groundLevel: number): boolean {
+    return this.y >= groundLevel;
+  }
+
+  land(groundLevel: number) {
+    this.y = groundLevel;
+    this.velocityY = 0;
+    this.jumping = false;
   }
 }
 

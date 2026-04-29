@@ -17,10 +17,10 @@ class Game {
   private keysPressed: Set<string> = new Set();
   private lastUpdateTime: number = 0;
   private gameLoop = (timestamp: number) => {
-    this.render();
-    const deltaTime = timestamp - this.lastUpdateTime;
+    const deltaTime = (timestamp - this.lastUpdateTime) / 1000; // converter para segundos
     this.lastUpdateTime = timestamp;
     this.update(deltaTime);
+    this.render();
     requestAnimationFrame(this.gameLoop);
   };
 
@@ -43,12 +43,26 @@ class Game {
   }
 
   private update(deltaTime: number) {
+    // Movimento horizontal
     if (this.isKeyPressed(A_KEY)) {
       this.player.move(-this.player.speed);
     }
 
     if (this.isKeyPressed(D_KEY)) {
       this.player.move(this.player.speed);
+    }
+
+    // Pulo
+    if (this.isKeyPressed(SPACE_KEY) && this.player.isGrounded(GROUND_LEVEL)) {
+      this.player.jump();
+    }
+
+    // Aplicar gravidade
+    this.player.applyGravity(GRAVITY);
+
+    // Detectar colisão com o chão
+    if (this.player.isGrounded(GROUND_LEVEL)) {
+      this.player.land(GROUND_LEVEL);
     }
 
     this.resolveWorldBounds();
