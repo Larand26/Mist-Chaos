@@ -1,0 +1,10 @@
+export const SPACE_KEY = " ";
+export const LEFT_KEY = "ArrowLeft";
+export const RIGHT_KEY = "ArrowRight";
+export const UP_KEY = "ArrowUp";
+export const DOWN_KEY = "ArrowDown";
+export const A_KEY = "a";
+export const D_KEY = "d";
+export const W_KEY = "w";
+export const S_KEY = "s";
+export const R_KEY = "r";
