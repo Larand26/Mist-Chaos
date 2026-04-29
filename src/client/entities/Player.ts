@@ -52,6 +52,10 @@ class Player extends Entity {
       health: this.health,
     };
   }
+
+  move(deltaX: number) {
+    this.x += deltaX;
+  }
 }
 
 export default Player;
