@@ -77,7 +77,7 @@ class Player extends Entity {
   }
 
   isGrounded(groundLevel: number): boolean {
-    return this.y >= groundLevel;
+    return this.y <= groundLevel;
   }
 
   land(groundLevel: number) {

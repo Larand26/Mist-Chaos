@@ -10,10 +10,20 @@ import {
 } from "../constants/keyboardConfig.js";
 
 import Player from "../entities/Player.js";
+import WorldObject from "../entities/WorldObject.js";
 
 class Game {
   ctx: CanvasRenderingContext2D;
   player: Player = new Player(50, GROUND_LEVEL, 100, 50, "#fff", "Player1");
+  ground: WorldObject = new WorldObject(
+    0,
+    0,
+    GROUND_LEVEL,
+    SCREEN_WIDTH,
+    true,
+    "#2e5712",
+    false,
+  );
   private keysPressed: Set<string> = new Set();
   private lastUpdateTime: number = 0;
   private gameLoop = (timestamp: number) => {
@@ -39,6 +49,7 @@ class Game {
     this.ctx.setTransform(1, 0, 0, 1, 0, 0);
     this.ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     this.ctx.setTransform(1, 0, 0, -1, 0, SCREEN_HEIGHT);
+    this.ground.draw(this.ctx);
     this.player.draw(this.ctx);
   }
 
