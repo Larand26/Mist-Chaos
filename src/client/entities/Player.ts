@@ -96,6 +96,7 @@ class Player extends Entity {
     this.velocityY = 0;
     this.jumping = false;
   }
+
   crouch(c: boolean) {
     if (c) {
       if (!this.crouched) {
@@ -109,6 +110,35 @@ class Player extends Entity {
         this.speed *= 2;
         this.crouched = false;
       }
+    }
+  }
+
+  shoot(
+    direction:
+      | "up"
+      | "down"
+      | "left"
+      | "right"
+      | "up-right"
+      | "up-left"
+      | "down-right"
+      | "down-left",
+    onShoot?: (
+      x: number,
+      y: number,
+      direction:
+        | "up"
+        | "down"
+        | "left"
+        | "right"
+        | "up-right"
+        | "up-left"
+        | "down-right"
+        | "down-left",
+    ) => void,
+  ) {
+    if (onShoot) {
+      onShoot(this.x + this.width / 2, this.y + this.height / 2, direction);
     }
   }
 }
