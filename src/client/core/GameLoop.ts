@@ -1,4 +1,7 @@
-import { GRAVITY, GROUND_LEVEL } from "../constants/gameConfig.js";
+import {
+  GRAVITY,
+  GROUND_LEVEL,
+} from "../constants/gameConfig.js";
 import { SCREEN_WIDTH, SCREEN_HEIGHT } from "../constants/screenSize.js";
 import {
   LEFT_KEY,
@@ -66,6 +69,12 @@ class Game {
     // Pulo
     if (this.isKeyPressed(SPACE_KEY)) {
       this.player.jump(GROUND_LEVEL);
+    }
+
+    if (this.isKeyPressed(S_KEY)) {
+      this.player.crouch(true);
+    } else {
+      this.player.crouch(false);
     }
 
     this.player.applyGravity(GRAVITY, GROUND_LEVEL);

@@ -96,6 +96,21 @@ class Player extends Entity {
     this.velocityY = 0;
     this.jumping = false;
   }
+  crouch(c: boolean) {
+    if (c) {
+      if (!this.crouched) {
+        this.height /= 2;
+        this.speed /= 2;
+        this.crouched = true;
+      }
+    } else {
+      if (this.crouched) {
+        this.height *= 2;
+        this.speed *= 2;
+        this.crouched = false;
+      }
+    }
+  }
 }
 
 export default Player;
